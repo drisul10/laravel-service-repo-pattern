@@ -1,0 +1,43 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Auto Dealership API Docs",
+        "description": "Auto Dealership Swagger API Documentation",
+        "contact": {
+            "email": "andrisul@outlook.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000",
+            "description": "API Server"
+        }
+    ],
+    "paths": {
+        "/api/user/list-page": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get list users (pagination)",
+                "operationId": "a4e1a35be0f965506662fedd68ee5aa6",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "User",
+            "description": "API endpoints of user"
+        }
+    ]
+}

@@ -256,6 +256,83 @@
                 ]
             }
         },
+        "/api/sales-report/{vehicleId}": {
+            "get": {
+                "tags": [
+                    "Sales"
+                ],
+                "summary": "Get sales report for a specific vehicle",
+                "operationId": "c77b07aa75d821ccda8e49512c42f0fd",
+                "parameters": [
+                    {
+                        "name": "vehicleId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "httpCode": {
+                                            "type": "integer",
+                                            "example": 200
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "example": "OK"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Vehicle not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "httpCode": {
+                                            "type": "integer",
+                                            "example": 404
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "example": "NOT_FOUND"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Vehicle not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/vehicle": {
             "post": {
                 "tags": [

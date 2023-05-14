@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\SaleRepository;
+use App\Repositories\SaleRepositoryImpl;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\UserRepository;
 use App\Repositories\UserRepositoryImpl;
@@ -20,6 +22,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             UserRepository::class,
             UserRepositoryImpl::class,
+        );
+
+        $this->app->bind(
+            SaleRepository::class,
+            SaleRepositoryImpl::class,
         );
 
         $this->app->bind(

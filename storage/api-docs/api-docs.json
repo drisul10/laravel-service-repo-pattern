@@ -122,6 +122,174 @@
                     }
                 ]
             }
+        },
+        "/api/vehicle": {
+            "post": {
+                "tags": [
+                    "Vehicles"
+                ],
+                "summary": "Save vehicle",
+                "operationId": "870f3d1d125d24e1fcca3190cad58f82",
+                "requestBody": {
+                    "description": "Example for Car:\n     *         `{'type': 'car', 'name': 'Honda Brio', 'release_year': 2015, 'color': 'white', 'price': 170000000, 'engine': 'engine2', 'passenger_capacity': 4, 'car_type': 'carType1'}`\n     *         Example for Motorcycle:\n     *         `{'type': 'motorcycle', 'name': 'Yamaha Nmax 155', 'release_year': 2023, 'color': 'red', 'price': 35000000, 'engine': 'engine1', 'suspension_type': 'suspension1', 'transmission_type': 'automatic'}`",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "type",
+                                    "name",
+                                    "release_year",
+                                    "color",
+                                    "price",
+                                    "engine"
+                                ],
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "car",
+                                            "motorcycle"
+                                        ],
+                                        "example": "motorbike"
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Yamaha Nmax 155"
+                                    },
+                                    "release_year": {
+                                        "type": "number",
+                                        "example": "2023"
+                                    },
+                                    "color": {
+                                        "type": "string",
+                                        "example": "red"
+                                    },
+                                    "price": {
+                                        "type": "number",
+                                        "example": "35000000"
+                                    },
+                                    "engine": {
+                                        "type": "string",
+                                        "example": "engine1"
+                                    },
+                                    "suspension_type": {
+                                        "type": "string",
+                                        "example": "suspension1"
+                                    },
+                                    "transmission_type": {
+                                        "type": "string",
+                                        "example": "automatic"
+                                    },
+                                    "passenger_capacity": {
+                                        "type": "number",
+                                        "example": "4"
+                                    },
+                                    "car_type": {
+                                        "type": "string",
+                                        "example": "carType1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/vehicles": {
+            "get": {
+                "tags": [
+                    "Vehicles"
+                ],
+                "summary": "Get paginated list of vehicles",
+                "operationId": "9fa63c9951d88fd6deb061f230bb6f2c",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    },
+                    {
+                        "name": "perPage",
+                        "in": "query",
+                        "description": "Items per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": 10
+                        }
+                    },
+                    {
+                        "name": "searchQuery",
+                        "in": "query",
+                        "description": "Search query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "brio"
+                        }
+                    },
+                    {
+                        "name": "filters",
+                        "in": "query",
+                        "description": "Additional filters",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "type:car"
+                        }
+                    },
+                    {
+                        "name": "sortField",
+                        "in": "query",
+                        "description": "Sort field",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "created_at"
+                        }
+                    },
+                    {
+                        "name": "sortDirection",
+                        "in": "query",
+                        "description": "Sort direction",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "desc"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
         }
     },
     "components": {
@@ -140,6 +308,10 @@
         {
             "name": "Auth",
             "description": "API endpoints of auth user"
+        },
+        {
+            "name": "Vehicles",
+            "description": "API endpoints of vehicle"
         }
     ]
 }

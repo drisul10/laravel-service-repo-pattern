@@ -9,6 +9,9 @@ generate-swagger:
 install:
 	composer install
 
+migrate:
+	php artisan migrate
+
 serve:
 	php artisan serve
 

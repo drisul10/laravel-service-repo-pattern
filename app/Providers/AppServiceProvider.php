@@ -5,6 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\UserRepository;
 use App\Repositories\UserRepositoryImpl;
+use App\Repositories\VehicleRepository;
+use App\Repositories\VehicleRepositoryImpl;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,6 +20,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             UserRepository::class,
             UserRepositoryImpl::class,
+        );
+
+        $this->app->bind(
+            VehicleRepository::class,
+            VehicleRepositoryImpl::class,
         );
     }
 

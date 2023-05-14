@@ -3,9 +3,6 @@ ifneq (,$(wildcard ./.env))
     export
 endif
 
-generate-swagger:
-	php artisan l5-swagger:generate
-
 install:
 	composer install
 
@@ -14,6 +11,9 @@ migrate:
 
 serve:
 	php artisan serve
+
+swagger:
+	php artisan l5-swagger:generate
 
 test:
 	php artisan test

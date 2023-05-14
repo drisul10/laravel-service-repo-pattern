@@ -16,4 +16,7 @@ class Message
   const AUTH_TOKEN_EXPIRED = 'Authentication token expired';
   const AUTH_TOKEN_INVALID = 'Invalid authentication token';
   const AUTH_TOKEN_NOT_ACCEPTED = 'Authentication token not accepted';
+
+  // Vehicle
+  const VEHICLE_NOT_FOUND = 'Data vehicle not found';
 }

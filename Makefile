@@ -3,6 +3,12 @@ ifneq (,$(wildcard ./.env))
     export
 endif
 
+app-key:
+	php artisan key:generate
+
+env:
+	cp .env.example .env
+
 install:
 	composer install
 

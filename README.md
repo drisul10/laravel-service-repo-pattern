@@ -1,64 +1,89 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Auto Dealership - Laravel Service Repository Pattern Example
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This project is a practical example of a comprehensive auto dealership management system developed using the Laravel framework (version 8) and the service repository pattern. The system is designed to manage various aspects of an auto dealership, such as the inventory of vehicles and their respective sales.
 
-## About Laravel
+The project aims to demonstrate the power and flexibility of the service repository pattern in structuring Laravel applications. It adheres to the principles of loose coupling and high cohesion, promoting maintainability and scalability of the codebase.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+The application is built using PHP version 8 and utilizes MongoDB (version 4.2) as the primary database, showcasing how a NoSQL database can be used in a Laravel application.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Vehicle Management**: The system allows for efficient handling of the dealership's inventory of vehicles. This includes the creation, and retrieval of vehicle records.
 
-## Learning Laravel
+- **Sales Management**: The system also manages the sales transactions of the dealership. It provides functionalities for recording sales, associating them with specific vehicles, and generating sales reports.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- **Pagination & Filtering**: The API endpoints are designed to handle requests with pagination and filtering parameters, enabling efficient data retrieval and display.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Test Coverage**: The system is equipped with unit and feature tests to ensure the reliability and robustness of the application.
 
-## Laravel Sponsors
+- **API Documentation**: The project employs Swagger for API documentation, providing a user-friendly interface for exploring the API's capabilities.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+The Auto Dealership system is a great starting point for anyone looking to understand how to effectively implement the service repository pattern in a Laravel application, and it serves as a solid foundation for building more complex systems.
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+## Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/drisul10/laravel-service-repo-pattern.git
+   ```
+
+2. Change to the project directory:
+
+   ```bash
+   cd laravel-service-repo-pattern
+   ```
+
+3. Copy the `.env.example` file to a new file named `.env`:
+
+   ```bash
+   make env
+   ```
+
+4. Update the `.env` file with your database and other configuration settings.
+
+5. Install the project dependencies:
+
+   ```bash
+   make install
+   ```
+
+6. Generate a new application key:
+
+   ```bash
+   make app-key
+   ```
+
+7. Run the database migrations:
+
+   ```bash
+   make migrate
+   ```
+
+8. Serve application:
+
+   ```bash
+   make serve
+   ```
+
+## API Documentation
+
+This project uses Swagger for API documentation. You can access the Swagger UI at the `/api/documentation` endpoint of your application. For example, if your application is running at `http://localhost:8000`, you can access the Swagger UI at `http://localhost:8000/api/documentation`.
+
+## Available Commands
+
+This project provides several commands, you can see all in the Makefile at the root project.
+
+## Running Tests
+
+You can run the project's tests using PHPUnit:
+
+```bash
+make test
+```
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+If you would like to contribute to this project, please feel free to submit a pull request. If you find a bug or have a suggestion for improvement, please open an issue.
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

@@ -132,6 +132,43 @@ class SaleController extends Controller
         return apiResponse(HttpCode::SUCCESS, StatusCode::OK, Message::SUCCESS, $sales);
     }
 
+    /**
+     * @OA\Get(
+     *     path="/api/sales-report/{vehicleId}",
+     *     summary="Get sales report for a specific vehicle",
+     *     tags={"Sales"},
+     *     @OA\Parameter(
+     *         name="vehicleId",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="httpCode", type="integer", example=200),
+     *             @OA\Property(property="status", type="string", example="OK"),
+     *             @OA\Property(property="message", type="string", example="Success"),
+     *             @OA\Property(property="data", type="object")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Vehicle not found",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="httpCode", type="integer", example=404),
+     *             @OA\Property(property="status", type="string", example="NOT_FOUND"),
+     *             @OA\Property(property="message", type="string", example="Vehicle not found"),
+     *         )
+     *     ),
+     *     security={ {"bearerAuth": {}} }
+     * )
+     */
     public function getSalesReportPerVehicle($vehicleId)
     {
         $report = $this->service->getSalesReportPerVehicle($vehicleId);

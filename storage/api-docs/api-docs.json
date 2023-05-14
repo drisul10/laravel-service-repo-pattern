@@ -123,6 +123,139 @@
                 ]
             }
         },
+        "/api/sale": {
+            "post": {
+                "tags": [
+                    "Sales"
+                ],
+                "summary": "Save Sale",
+                "operationId": "d64da8ed23875861493edb24176dc753",
+                "requestBody": {
+                    "description": "Payload Example: `{'vehicle_id': '60ad2383822394f3dd463', 'sale_date': '2023-05-14', 'sale_price': 170000000}`",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "vehicle_id",
+                                    "sale_date",
+                                    "sale_price"
+                                ],
+                                "properties": {
+                                    "vehicle_id": {
+                                        "type": "string",
+                                        "example": "60ad2383822394f3dd463"
+                                    },
+                                    "sale_date": {
+                                        "type": "string",
+                                        "example": "2023-05-14"
+                                    },
+                                    "sale_price": {
+                                        "type": "number",
+                                        "example": "170000000"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/sales": {
+            "get": {
+                "tags": [
+                    "Sales"
+                ],
+                "summary": "Get paginated list of sales",
+                "operationId": "a144e6f88c308ff943433956e711b0a3",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    },
+                    {
+                        "name": "perPage",
+                        "in": "query",
+                        "description": "Items per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": 10
+                        }
+                    },
+                    {
+                        "name": "searchQuery",
+                        "in": "query",
+                        "description": "Search query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "brio"
+                        }
+                    },
+                    {
+                        "name": "filters",
+                        "in": "query",
+                        "description": "Additional filters",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "type:car"
+                        }
+                    },
+                    {
+                        "name": "sortField",
+                        "in": "query",
+                        "description": "Sort field",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "created_at"
+                        }
+                    },
+                    {
+                        "name": "sortDirection",
+                        "in": "query",
+                        "description": "Sort direction",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "desc"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/vehicle": {
             "post": {
                 "tags": [
@@ -308,6 +441,10 @@
         {
             "name": "Auth",
             "description": "API endpoints of auth user"
+        },
+        {
+            "name": "Sales",
+            "description": "API endpoints of sales"
         },
         {
             "name": "Vehicles",

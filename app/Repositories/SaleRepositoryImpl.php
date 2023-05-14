@@ -97,4 +97,48 @@ class SaleRepositoryImpl implements SaleRepository
   {
     return $this->model->find($id);
   }
+
+  public function getSalesReportPerVehicle($vehicleId)
+  {
+    $pipeline = [
+      [
+        '$match' => [
+          'vehicle_id' => $vehicleId
+        ]
+      ],
+      [
+        '$group' => [
+          '_id' => '$sale_date',
+          'total_sale_price' => [
+            '$sum' => '$sale_price'
+          ],
+          'vehicle_id' => ['$first' => '$vehicle_id']
+        ]
+      ],
+      [
+        '$project' => [
+          '_id' => 0,
+          'sale_date' => '$_id',
+          'total_sale_price' => 1,
+        ]
+      ],
+      [
+        '$sort' => ['sale_date' => 1]
+      ]
+    ];
+
+    $reportPerDate = $this->model->raw(function ($collection) use ($pipeline) {
+      return $collection->aggregate($pipeline);
+    });
+
+    $salesArray = $reportPerDate->toArray();
+    $totalSalePrice = array_reduce($salesArray, function ($carry, $sale) {
+      return $carry + $sale['total_sale_price'];
+    }, 0);
+
+    return [
+      'report_per_date' => $reportPerDate,
+      'total_sale_price' => $totalSalePrice
+    ];
+  }
 }

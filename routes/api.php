@@ -24,6 +24,7 @@ Route::group(['prefix' => 'auth'], function () {
 
 Route::post('sale', [SaleController::class, 'save'])->middleware('jwt.auth');
 Route::get('sales', [SaleController::class, 'getManyWithPagination'])->middleware('jwt.auth');
+Route::get('sales-report/{vehicleId}', [SaleController::class, 'getSalesReportPerVehicle'])->middleware('jwt.auth');
 
 Route::post('vehicle', [VehicleController::class, 'save'])->middleware('jwt.auth');
 Route::get('vehicles', [VehicleController::class, 'getManyWithPagination'])->middleware('jwt.auth');

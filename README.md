@@ -20,6 +20,54 @@ The application is built using PHP version 8 and utilizes MongoDB (version 4.2) 
 
 The Auto Dealership system is a great starting point for anyone looking to understand how to effectively implement the service repository pattern in a Laravel application, and it serves as a solid foundation for building more complex systems.
 
+## Database Structure
+
+The MongoDB database for this project contains three collections: `users`, `vehicles`, and `sales`.
+
+`users` has the following structure:
+
+- _id: ObjectId
+- name: String
+- email: String
+- password: String (Hashed)
+- created_at: Date
+- updated_at: Date
+
+`vehicles` has the following structure:
+
+- _id: ObjectId
+- type: String (enum `car` or `motorcycle`)
+- name: String
+- release_year: Integer
+- color: String
+- price: Float
+- engine: String
+- passenger_capacity: Integer (only for type `car`)
+- car_type: String (only for type `car`)
+- suspension_type: String (only for type `motorcycle`)
+- transmission_type: String (only for type `motorcycle`)
+- created_by: ObjectId (refers to the `_id` of a user)
+- created_at: Date
+- updated_at: Date
+
+`sales` has the following structure:
+
+- _id: ObjectId
+- vehicle_id: ObjectId (refers to the `_id` of a vehicle)
+- sale_date: Date
+- sale_price: Float
+- vehicle_price: Float
+- created_by: ObjectId (refers to the `_id` of a user)
+- created_at: Date
+- updated_at: Date
+
+## System Requirements
+
+- PHP >= 8.x
+- Laravel 8.x
+- MongoDB 4.2
+- Composer
+- Git
 
 ## Installation
 
@@ -71,6 +119,20 @@ The Auto Dealership system is a great starting point for anyone looking to under
 
 This project uses Swagger for API documentation. You can access the Swagger UI at the `/api/documentation` endpoint of your application. For example, if your application is running at `http://localhost:8000`, you can access the Swagger UI at `http://localhost:8000/api/documentation`.
 
+## Registration and Login
+
+To register a new user, make a POST request to `/api/register` with the following data:
+
+```json
+{
+  "name": "Your Name",
+  "email": "Your Email",
+  "password": "Your Password"
+}
+```
+
+See API Documentation
+
 ## Available Commands
 
 This project provides several commands, you can see all in the Makefile at the root project.
@@ -86,4 +148,3 @@ make test
 ## Contributing
 
 If you would like to contribute to this project, please feel free to submit a pull request. If you find a bug or have a suggestion for improvement, please open an issue.
-

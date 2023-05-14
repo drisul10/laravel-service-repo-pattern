@@ -96,4 +96,47 @@ class SaleControllerTest extends TestCase
 
     $this->assertEquals(HttpCode::SUCCESS, $response->getStatusCode());
   }
+
+  public function test_can_get_sales_report_per_vehicle()
+  {
+    $vehicle = Vehicle::factory()->create();
+    $sale1 = Sale::factory()->for($vehicle)->create(['sale_price' => 56000000]);
+    $sale2 = Sale::factory()->for($vehicle)->create(['sale_price' => 33200000.45]);
+
+    $expectedReport = [
+      'vehicle' => $vehicle->toArray(),
+      'total_sale_price' => 89200000.45,
+      'report_per_date' => [
+        [
+          'total_sale_price' => 56000000,
+          'sale_date' => $sale1->sale_date->toDateTimeString(),
+        ],
+        [
+          'total_sale_price' => 33200000.45,
+          'sale_date' => $sale2->sale_date->toDateTimeString(),
+        ],
+      ],
+    ];
+
+    $this->saleServiceMock
+      ->shouldReceive('getSalesReportPerVehicle')
+      ->once()
+      ->with($vehicle->_id)
+      ->andReturn($expectedReport);
+
+    $user = User::factory()->create();
+
+    $token = JWTAuth::fromUser($user);
+
+    $response = $this->withHeaders([
+      'Authorization' => 'Bearer ' . $token,
+    ])->json('GET', "/api/sales-report/{$vehicle->_id}");
+
+    $response->assertStatus(200);
+    $response->assertJson([
+      'status' => StatusCode::OK,
+      'message' => Message::SUCCESS,
+      'data' => $expectedReport,
+    ]);
+  }
 }

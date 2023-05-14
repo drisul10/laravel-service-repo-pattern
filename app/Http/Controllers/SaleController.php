@@ -131,4 +131,11 @@ class SaleController extends Controller
 
         return apiResponse(HttpCode::SUCCESS, StatusCode::OK, Message::SUCCESS, $sales);
     }
+
+    public function getSalesReportPerVehicle($vehicleId)
+    {
+        $report = $this->service->getSalesReportPerVehicle($vehicleId);
+
+        return apiResponse(HttpCode::SUCCESS, StatusCode::OK, Message::SUCCESS, $report);
+    }
 }
